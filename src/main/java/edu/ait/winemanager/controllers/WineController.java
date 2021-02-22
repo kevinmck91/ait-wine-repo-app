@@ -18,58 +18,69 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import edu.ait.winemanager.dao.WineDAO;
 import edu.ait.winemanager.dto.Wine;
+import edu.ait.winemanager.exceptions.WineNotFoundException;
+import edu.ait.winemanager.repositories.WineRepository;
 
 @RestController
 public class WineController {
 
 	@Autowired
-	WineDAO wineDAO;
+	WineRepository wineRepository;
 
 	@GetMapping("wines")
 	public List<Wine> getAllWines() {
-
-		return wineDAO.findAll();
-
+		
+		return wineRepository.findAll();
+		
 	}
 
 	@GetMapping("wines/{id}")
-	public Optional<Wine> getWineById(@PathVariable int id) {
+	public Wine getWineById(@PathVariable int id) {
 
-		return wineDAO.findbyId(id);
+		Optional<Wine> foundWine = wineRepository.findById(id);
+		
+		if(foundWine.isPresent())
+			return foundWine.get();
+		else
+			throw new WineNotFoundException("Unable to find wine: " + id);
 
 	}
 	
 	@DeleteMapping("wines/{id}")
 	public void deleteWineById(@PathVariable int id) {
-
-		wineDAO.deleteWine(id);
-
+		
+		try {
+			wineRepository.deleteById(id);
+		} catch (Exception e) {
+			throw new WineNotFoundException("Wine " + id + " does not exist");
+		}
+		
 	}
 	
 	@PostMapping("wines/")
-	public ResponseEntity createWine(@RequestBody Wine wine) {
+	public ResponseEntity createWine(@RequestBody Wine newWine) {
 
-		wineDAO.createWine(wine);
-		
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(wine.getId()).toUri();
-		
+		Wine savedWine = wineRepository.save(newWine);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(newWine.getId()).toUri();
 		return ResponseEntity.created(location).build();
 
 	}
 	
 	@PutMapping("wines/")
-	public ResponseEntity updateWine(@RequestBody Wine wine) {
+	public ResponseEntity updateWine(@RequestBody Wine newWine) {
 
-		boolean updated =  wineDAO.updateWine(wine);
-		
-		if(updated == true) {
+		if(newWine.getId() != null) 
+		{
+			wineRepository.save(newWine);
 			return ResponseEntity.status(HttpStatus.OK).build();
 		}
-		else{
-			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(wine.getId()).toUri();
+		else 
+		{
+			Wine savedWine = wineRepository.save(newWine);
+			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(newWine.getId()).toUri();
 			return ResponseEntity.created(location).build();
 		}
-
+		
 	}
 
 }
