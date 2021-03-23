@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import edu.ait.winemanager.dao.WineDAO;
 import edu.ait.winemanager.dto.Wine;
 import edu.ait.winemanager.exceptions.WineNotFoundException;
 import edu.ait.winemanager.repositories.WineRepository;
@@ -29,43 +28,44 @@ public class WineController {
 
 	@GetMapping("wines")
 	public List<Wine> getAllWines() {
-		
+
 		return wineRepository.findAll();
-		
+
 	}
 
 	@GetMapping("wines/{id}")
 	public Wine getWineById(@PathVariable int id) {
 
 		Optional<Wine> foundWine = wineRepository.findById(id);
-		
-		if(foundWine.isPresent())
+
+		if (foundWine.isPresent())
 			return foundWine.get();
 		else
 			throw new WineNotFoundException("Unable to find wine: " + id);
 
 	}
-	
+
 	@DeleteMapping("wines/{id}")
 	public void deleteWineById(@PathVariable int id) {
-		
+
 		try {
 			wineRepository.deleteById(id);
 		} catch (Exception e) {
 			throw new WineNotFoundException("Wine " + id + " does not exist");
 		}
-		
+
 	}
-	
+
 	@PostMapping("wines/")
 	public ResponseEntity createWine(@RequestBody Wine newWine) {
 
 		Wine savedWine = wineRepository.save(newWine);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(newWine.getId()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(newWine.getId())
+				.toUri();
 		return ResponseEntity.created(location).build();
 
 	}
-	
+
 	@PutMapping("wines/")
 	public ResponseEntity updateWine(@RequestBody Wine newWine) {
 
@@ -80,7 +80,13 @@ public class WineController {
 			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(newWine.getId()).toUri();
 			return ResponseEntity.created(location).build();
 		}
-		
+
+	}
+	
+	public int addInts(int x, int y) {
+
+		return x + y; 
+
 	}
 
 }
