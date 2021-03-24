@@ -19,6 +19,22 @@ public class WineControllerTest {
 	
 	@Autowired
 	WineDAO wineDAO;
+
+	@Test
+	public void createWineTest() {
+
+		Wine testWine = new Wine(30, "testWine", 2009, 0, "testGrapes", "testCountry", "testRegion", "testDescription", "testPicture.jpg"); 
+		
+		wineDAO.createWine(testWine);
+		
+		// Check the wine was added to the database successfully
+		assertEquals(13, wineDAO.wineList.size());
+		
+		// Check the correct wine was created in the correct location
+		assertEquals(testWine, wineDAO.findbyId(30).get());
+		
+		
+	}
 	
 	@Test
 	public void checkIfSufficientStockTest() {
@@ -32,5 +48,9 @@ public class WineControllerTest {
 		assertNotEquals("Inufficient stock of wine : 11", wineDAO.checkIfSufficientStock(11));
 		
 	}
+
+	
+	
+	
 	
 }
