@@ -71,5 +71,12 @@ public class WineController {
 		}
 
 	}
+	
+	@GetMapping("wines/check/{id}")
+	public String checkIfSufficientStock(@PathVariable int id) {
+		
+		return wineDAO.checkIfSufficientStock(id);
+		
+	}
 
 }

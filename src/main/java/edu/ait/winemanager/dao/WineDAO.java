@@ -95,4 +95,19 @@ public class WineDAO {
 		
 		
 	}
+
+	public String checkIfSufficientStock(int id) {
+
+		int sufficientStock = 10;
+		
+		int stock = findbyId(id).get().getStock();
+
+		if(stock <= sufficientStock) {
+			return "Insufficient stock of wine : " + id;
+		} else {
+			return "Sufficient stock of wine : " + id;
+		}
+		
+		
+	}
 }
