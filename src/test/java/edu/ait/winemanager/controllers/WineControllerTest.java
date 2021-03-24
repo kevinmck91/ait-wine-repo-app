@@ -49,8 +49,16 @@ public class WineControllerTest {
 		
 	}
 
-	
-	
-	
+/*	
+	@Test
+	public void countAllWinesTest() {
+
+		assertEquals(132, wineDAO.countAllWines());
+		
+		assertNotEquals(-1, wineDAO.countAllWines());
+		assertNotEquals(0, wineDAO.countAllWines());
+		
+	}
+*/
 	
 }

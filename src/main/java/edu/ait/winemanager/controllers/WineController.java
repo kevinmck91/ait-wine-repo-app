@@ -78,5 +78,14 @@ public class WineController {
 		return wineDAO.checkIfSufficientStock(id);
 		
 	}
-
+	
+/*	
+	@GetMapping("wines/count/")
+	public int countAllWines() {
+		
+		return wineDAO.countAllWines();
+		
+	}
+*/
+	
 }

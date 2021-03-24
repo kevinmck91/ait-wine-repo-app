@@ -2,6 +2,7 @@ package edu.ait.winemanager.dao;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,7 +14,7 @@ import edu.ait.winemanager.exceptions.WineNotFoundException;
 @Component 
 public class WineDAO {
 	
-	private List<Wine> wineList = new ArrayList(Arrays.asList(
+	public List<Wine> wineList = new ArrayList(Arrays.asList(
 	        new Wine(0, "CHATEAU DE SAINT COSME", 2009, 15, "Grenache / Syrah", "France", "Southern Rhone / Gigondas", "The aromas of fruit and spice give one a hint of the light drinkability of this lovely wine, which makes an excellent complement to fish dishes.", "saint_cosme.jpg"),
 	        new Wine(1, "LAN RIOJA CRIANZA", 2006, 4, "Tempranillo", "Spain", "Rioja", "A resurgence of interest in boutique vineyards has opened the door for this excellent foray into the dessert wine market. Light and bouncy, with a hint of black truffle, this wine will not fail to tickle the taste buds.", "lan_rioja.jpg"),
 	        new Wine(2, "MARGERUM SYBARITE", 2010, 16, "Sauvignon Blanc", "USA", "California Central Cosat", "The cache of a fine Cabernet in ones wine cellar can now be replaced with a childishly playful wine bubbling over with tempting tastes of\nblack cherry and licorice. This is a taste sure to transport you back in time.", "margerum.jpg"),
@@ -110,4 +111,15 @@ public class WineDAO {
 		
 		
 	}
+
+/*	
+	public int countAllWines() {
+		
+		int total = wineList.stream().mapToInt(e -> e.getStock()).sum();
+
+		return total;
+		
+	}
+*/
+	
 }
