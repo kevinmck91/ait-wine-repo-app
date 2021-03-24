@@ -5,6 +5,7 @@ public class Wine {
 	private int id;
 	private String name;
 	private int year;
+	private int stock;
 	private String grapes;
 	private String country;
 	private String region;
@@ -15,10 +16,11 @@ public class Wine {
 	public Wine() {
 	}
 
-	public Wine(int id, String name, int year, String grapes, String country, String region, String description, String picture) {
+	public Wine(int id, String name, int year, int stock, String grapes, String country, String region, String description, String picture) {
 		this.id = id;
 		this.name = name;
 		this.year = year;
+		this.stock = stock;
 		this.grapes = grapes;
 		this.country = country;
 		this.region = region;
@@ -48,6 +50,15 @@ public class Wine {
 
 	public void setYear(int year) {
 		this.year = year;
+	}
+	
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 
 	public String getGrapes() {
@@ -89,6 +100,8 @@ public class Wine {
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
+	
+	
 
 	@Override
 	public String toString() {
