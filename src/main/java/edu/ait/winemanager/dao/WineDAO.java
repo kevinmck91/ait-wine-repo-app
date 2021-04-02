@@ -112,7 +112,7 @@ public class WineDAO {
 		
 	}
 
-/*	
+	
 	public int countAllWines() {
 		
 		int total = wineList.stream().mapToInt(e -> e.getStock()).sum();
@@ -120,6 +120,6 @@ public class WineDAO {
 		return total;
 		
 	}
-*/
+
 	
 }
