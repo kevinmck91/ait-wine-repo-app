@@ -79,13 +79,13 @@ public class WineController {
 		
 	}
 	
-	
+/*	
 	@GetMapping("wines/count/")
 	public int countAllWines() {
 		
 		return wineDAO.countAllWines();
 		
 	}
-
+*/
 	
 }

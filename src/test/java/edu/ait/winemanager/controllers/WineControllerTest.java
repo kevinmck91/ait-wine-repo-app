@@ -49,7 +49,7 @@ public class WineControllerTest {
 		
 	}
 
-	
+/*	
 	@Test
 	public void countAllWinesTest() {
 
@@ -59,6 +59,6 @@ public class WineControllerTest {
 		assertNotEquals(0, wineDAO.countAllWines());
 		
 	}
-
+*/
 	
 }
