@@ -20,12 +20,17 @@ public class Wine {
 	@Lob
 	private String description;
 	private String picture;
+	private Double price;
+	private int stock;
 	
+
+	
+
 	// Required due to some Jackson error
 	public Wine() {
 	}
 
-	public Wine(int id, String name, int year, String grapes, String country, String region, String description, String picture) {
+	public Wine(int id, String name, int year, String grapes, String country, String region, String description, String picture, Double price, int stock) {
 		this.id = id;
 		this.name = name;
 		this.year = year;
@@ -34,6 +39,8 @@ public class Wine {
 		this.region = region;
 		this.description = description;
 		this.picture = picture;
+		this.price = price;
+		this.stock = stock;
 	}
 
 	public Integer getId() {
@@ -98,6 +105,23 @@ public class Wine {
 
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+	
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 
 	@Override
