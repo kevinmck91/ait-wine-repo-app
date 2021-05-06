@@ -21,6 +21,7 @@ public class WineController {
 	@Autowired
 	WineUtils wineUtils;
 
+	
 	@GetMapping("wines")
 	public List<Wine> getAllWines() {
 
@@ -35,11 +36,10 @@ public class WineController {
 
 		return foundWine.get();
 		
-
 	}
 	
 
-	@GetMapping("winecount/")
+	@GetMapping("wines/count/")
 	public double getWineCount() {
 
 		List<Wine> wineList = getAllWines();

@@ -12,25 +12,23 @@ public class Wine {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)	//TODO: figure out what this does
 	private Integer id;
-	private String name;
-	private int year;
-	private String grapes;
-	private String country;
-	private String region;
+	private Double 	price;
+	private int 	stock;
+	private String 	name;
+	private int		year;
+	private String 	grapes;
+	private String 	country;
+	private String 	region;
 	@Lob
-	private String description;
-	private String picture;
-	private Double price;
-	private int stock;
+	private String 	description;
+	private String 	picture;
+	
 	
 
-	
-
-	// Required due to some Jackson error
 	public Wine() {
 	}
 
-	public Wine(int id, String name, int year, String grapes, String country, String region, String description, String picture, Double price, int stock) {
+	public Wine(int id, double price, int stock, String name, int year, String grapes, String country, String region, String description, String picture) {
 		this.id = id;
 		this.name = name;
 		this.year = year;

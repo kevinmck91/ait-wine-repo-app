@@ -2,8 +2,11 @@ package edu.ait.winemanager.utilities;
 
 import java.util.List;
 
+import org.springframework.boot.SpringBootConfiguration;
+
 import edu.ait.winemanager.dto.Wine;
 
+@SpringBootConfiguration
 public class WineUtils {
 
 	public double calculatePostage(Wine wine) {
@@ -16,12 +19,12 @@ public class WineUtils {
 			postage = 0;
 		} else if (price >= 9 && price < 10) {
 			postage = 2.99;
-		} else if (price >= 10 && price < 11) {
+		} else if (price >= 10 && price < 12) {
 			postage = 3.99;
 		} else if (price >= 12 && price < 13) {
 			postage = 4.99;
 		} else {
-			postage = 4.99;
+			postage = 6.99;
 		}
 
 		return postage;
